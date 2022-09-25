@@ -48,7 +48,7 @@ Things you may want to cover:
 | Column        | Type      | Options                       |
 | ------------- | --------- | ----------------------------- |
 | post_code     | string    | null: false                   |
-| prefecture    | integer   | null: false                   |
+| prefecture_id | integer   | null: false                   |
 | city          | string    | null: false                   |
 | address       | string    | null: false                   |
 | building_name | string    |                               |
@@ -57,7 +57,7 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :order
+- belongs_to :order
 
 ## items テーブル
 
@@ -66,16 +66,16 @@ Things you may want to cover:
 | name                        | string    | null: false                    |
 | price                       | integer   | null: false                    |
 | description                 | text      | null: false                    |
-| status                      | integer   | null: false                    |
+| status_id                   | integer   | null: false                    |
 | delivery_charge_defrayer_id | integer   | null: false                    |
-| days                        | integer   | null: false                    |
+| day_id                      | integer   | null: false                    |
 | prefecture_id               | integer   | null: false                    |
 | category_id                 | integer   | null: false                    |
 | user                        | reference | null: false, foreign_key: true |
 
 ### Association
 
-- belongs__to :user
+- belongs_to :user
 - has_one :order
 
 ## orders テーブル
