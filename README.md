@@ -40,8 +40,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :customer
 - has_many :items
+- has_many :orders
 
 ## Customer テーブル
 
@@ -53,41 +53,40 @@ Things you may want to cover:
 | address       | string    | null: false                   |
 | building_name | string    | null: false                   |
 | phone_number  | string    | null: false                   |
-| user_id       | reference | null: false, foreign_key:true |
+| user          | reference | null: false, foreign_key:true |
 
 ### Association
 
-- belongs_to :user
-- has_one :deal
+- has_one :order
 
 ## items テーブル
 
 | Column                   | Type      | Options                        |
 | ------------------------ | --------- | ------------------------------ |
 | name                     | string    | null: false                    |
-| price                    | string    | null: false                    |
+| price                    | integer   | null: false                    |
 | description              | text      | null: false                    |
-| status                   | string    | null: false                    |
-| delivery_charge          | string    |                                |
-| delivery_charge_defrayer | string    | null:false                     |
-| days                     | string    | null: false                    |
-| category_id              | reference | null: false, foreign_key: true |
-| brand_id                 | reference | null: false, foreign_key: true |
-| prefecture               | string    | null: false                    |
+| status                   | integer   | null: false                    |
+| delivery_charge_defrayer | integer   | null: false                    |
+| days                     | integer   | null: false                    |
+| prefecture_id            | integer   | null: false                    |
+| user                     | reference | null: false, foreign_key: true |
 
 ### Association
 
 - belongs__to :user
-- has_one :orders
+- has_one :order
 
 ## orders テーブル
 
-| Column      | Type      | Options                        |
-| ----------- | --------- | ------------------------------ |
-| item_id     | reference | null: false, foreign_key: true |
-| customer_id | reference | null: false, foreign_key: true |
+| Column   | Type      | Options                        |
+| -------- | --------- | ------------------------------ |
+| item     | reference | null: false, foreign_key: true |
+| customer | reference | null: false, foreign_key: true |
+| user     | reference | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :customer
 - belongs_to :item
+- belongs_to :user
