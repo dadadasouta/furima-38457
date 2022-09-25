@@ -48,10 +48,10 @@ Things you may want to cover:
 | Column        | Type      | Options                       |
 | ------------- | --------- | ----------------------------- |
 | post_code     | string    | null: false                   |
-| prefecture    | string    | null: false                   |
+| prefecture    | integer   | null: false                   |
 | city          | string    | null: false                   |
 | address       | string    | null: false                   |
-| building_name | string    | null: false                   |
+| building_name | string    |                               |
 | phone_number  | string    | null: false                   |
 | user          | reference | null: false, foreign_key:true |
 
@@ -61,16 +61,17 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column                   | Type      | Options                        |
-| ------------------------ | --------- | ------------------------------ |
-| name                     | string    | null: false                    |
-| price                    | integer   | null: false                    |
-| description              | text      | null: false                    |
-| status                   | integer   | null: false                    |
-| delivery_charge_defrayer | integer   | null: false                    |
-| days                     | integer   | null: false                    |
-| prefecture_id            | integer   | null: false                    |
-| user                     | reference | null: false, foreign_key: true |
+| Column                      | Type      | Options                        |
+| --------------------------- | --------- | ------------------------------ |
+| name                        | string    | null: false                    |
+| price                       | integer   | null: false                    |
+| description                 | text      | null: false                    |
+| status                      | integer   | null: false                    |
+| delivery_charge_defrayer_id | integer   | null: false                    |
+| days                        | integer   | null: false                    |
+| prefecture_id               | integer   | null: false                    |
+| category_id                 | integer   | null: false                    |
+| user                        | reference | null: false, foreign_key: true |
 
 ### Association
 
@@ -79,14 +80,13 @@ Things you may want to cover:
 
 ## orders テーブル
 
-| Column   | Type      | Options                        |
-| -------- | --------- | ------------------------------ |
-| item     | reference | null: false, foreign_key: true |
-| customer | reference | null: false, foreign_key: true |
-| user     | reference | null: false, foreign_key: true |
+| Column | Type      | Options                        |
+| ------ | --------- | ------------------------------ |
+| item   | reference | null: false, foreign_key: true |
+| user   | reference | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :customer
+- has_one :customer
 - belongs_to :item
 - belongs_to :user
