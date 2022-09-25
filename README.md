@@ -40,21 +40,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :credit card
 - has_one :customer
-- has_many :comments
-- has_many :products
-
-## credit card テーブル
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key:true  |
-| card_id | reference  | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
+- has_many :items
 
 ## Customer テーブル
 
@@ -73,20 +60,7 @@ Things you may want to cover:
 - belongs_to :user
 - has_one :deal
 
-## comments テーブル
-
-| Column     | Type      | Options                        |
-| ---------- | --------- | ------------------------------ |
-| content    | string    | null: false                    |
-| product_id | reference | null: false, foreign_key: true |
-| user_id    | reference | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :product
-
-## products テーブル
+## items テーブル
 
 | Column                   | Type      | Options                        |
 | ------------------------ | --------- | ------------------------------ |
@@ -104,39 +78,16 @@ Things you may want to cover:
 ### Association
 
 - belongs__to :user
-- has_many :comments
-- has_one :deal
-- belongs_to :category
-- belongs_to :brand
+- has_one :orders
 
-## deal テーブル
+## orders テーブル
 
 | Column      | Type      | Options                        |
 | ----------- | --------- | ------------------------------ |
-| product_id  | reference | null: false, foreign_key: true |
+| item_id     | reference | null: false, foreign_key: true |
 | customer_id | reference | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :customer
-- belongs_to :product
-
-## category テーブル
-
-| Column | Type   | Options |
-| ------ | ------ | ------- |
-| name   | string |         |
-
-### Association
-
-- has_many :products
-
-## brand テーブル
-
-| Column | Type   | Options |
-| ------ | ------ | ------- |
-| name   | string |         |
-
-### Association
-
-- has_many :products
+- belongs_to :item
