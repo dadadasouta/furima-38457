@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only:[:new]
 
   def index
+    @items = Item.all.order(created_at: :desc)
   end
 
   def new
@@ -14,6 +15,15 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
+  end
+
+  def destroy
+    @prototype = Prototype.find(params[:id])
+    if @prototype.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 
