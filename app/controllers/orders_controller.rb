@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
 
   def index
@@ -12,7 +13,7 @@ class OrdersController < ApplicationController
       @order_address.save
       redirect_to root_path
     else
-      render :new
+      render :index
     end
   end
 
@@ -31,7 +32,7 @@ class OrdersController < ApplicationController
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
-        amount: order_params[:price],  
+        amount: @item.price,  
         card: order_params[:token],    
         currency: 'jpy'                 
       )
