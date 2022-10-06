@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    @order_address = OrderAddress.new
+    @order_address = OrderAddress.new(order_params)
   end
 
   def create
@@ -27,6 +27,9 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id || @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def pay_item
