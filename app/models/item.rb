@@ -20,5 +20,6 @@ class Item < ApplicationRecord
   end
 
   belongs_to :user
+  belongs_to :order
   has_one_attached :image
 end
